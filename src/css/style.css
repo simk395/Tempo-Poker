@@ -1,0 +1,14 @@
+.player{
+    height:50px;
+    width:50px;
+}
+
+.card{
+    height:25%;
+    width:15%;
+    margin-right: 5px;
+}
+
+.inventory{
+    height: 65vh;
+}

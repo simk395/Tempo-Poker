@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/simk395/370-prj/issues"
   },
-  "homepage": "https://github.com/simk395/370-prj#readme"
+  "homepage": "https://github.com/simk395/370-prj#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3"
+  }
 }

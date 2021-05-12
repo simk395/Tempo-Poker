@@ -14,27 +14,26 @@ function init() {
             }
        
             player = new Player(i, name.value, color.value, 0, {});
-            playerArr.push(JSON.stringify(player));
-        }
-    
-        if(!storage.getItem("players")){
-            storage.setItem("players", playerArr);
-            console.log(localStorage);
-        }else{
-            storage.removeItem("players");
-            storage.setItem("players", playerArr);
-            console.log(localStorage);
+            playerArr.push(player);
         }
         
-        let boardSize = document.querySelector("#size").value;
-        if(!storage.getItem("board")){
-            storage.setItem("boardSize", boardSize);
-            console.log(localStorage);
+        let players = JSON.stringify(playerArr);
+        
+        if(!storage.getItem("players")){
+            storage.setItem("players", players);
         }else{
-            storage.removeItem("boardSize");
-            storage.setItem("boardSize", boardSize);
-            console.log(localStorage);
+            storage.removeItem("players");
+            storage.setItem("players", players);
         }
+        
+        let size = document.querySelector("#size").value;
+        if(!storage.getItem("board")){
+            storage.setItem("board", size);
+        }else{
+            storage.removeItem("board");
+            storage.setItem("board", size);
+        }
+
         window.location.href = "./index.html";
     }
    
