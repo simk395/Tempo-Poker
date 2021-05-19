@@ -4,27 +4,31 @@ export default class Deck{
         this.remaining = id;
     }
 
-    async getDeck(){
+    async getDeck(id = "new"){
         try{
-            const res = await fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
+             // Request data from the Deck of Cards API through a proxy server. The data is parsed into an object to be accessible for Javascript.
+            // log errors into the console upon a status that is not success (200)
+            const res = await fetch(`https://ancient-eyrie-20832.herokuapp.com/https://deckofcardsapi.com/api/deck/${id}/shuffle/?deck_count=1`);
+            if(res.status != 200) throw Error;
             const data = await res.json();
             this.id = data.deck_id;
-            this.reamaining = data.remaining;
+            this.remaining = data.remaining;
             return this;
         }catch(err){
-            console.log("failed to get deck");
+            throw new Error("Failed to retrieve deck")
         }
-        
     }
 
+    // attempt to draw a card from the deck
     async draw(id){
         try{
             const res = await fetch(`https://deckofcardsapi.com/api/deck/${id}/draw/?count=1`)
+            if(res.status != 200) throw Error;
             const data = await res.json();
             this.remaining = data.remaining;
             return data.cards[0];
         }catch(err){
-            console.log("failed to draw from deck");
+            throw new Error("Failed to draw card");
         }
     }
 }

@@ -1,14 +1,75 @@
+body{
+    overflow-x: hidden;
+}
+
+#board{
+    background-image: url("../../public/images/bg.jpg");
+    background-size: cover;
+}
+
+#title{
+    text-align: center;
+}
+
+.inventory{
+    height: 45vh;
+    background: rgba(255,255,255,0.9);
+}
+
+.card, .food{
+    height:25%;
+    width:12.5%;
+    margin:1rem;
+}
+
+#roll, #use{
+    height:5rem;
+}
+
 .player{
     height:50px;
     width:50px;
 }
 
-.card{
-    height:25%;
-    width:15%;
-    margin-right: 5px;
+#weather{
+    width:100%;
+    margin:0;
+    padding: 5px 0px 5px 0px;
+}
+.weather-col{
+    background:rgba(255,255,255,0.9);
+    margin-right:5px;
+    
 }
 
-.inventory{
-    height: 65vh;
+.weather-title{
+    font-weight:bold;
+}
+
+.temp{
+    font-weight:bold;
+    font-size:2rem;
+    margin:0;
+}
+
+#log{
+    height: 15vh;
+}
+
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+#signin, #signout{
+    float:right;
+}
+
+.active{
+    border: 3px solid black !important;
 }

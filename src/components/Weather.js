@@ -8,15 +8,17 @@ export default class Weather{
         this.type = type;
     }
     async getWeather(){
-        // remove secret
         try{
-            const res = await fetch(`https://ancient-eyrie-20832.herokuapp.com/https://api.darksky.net/forecast/1c0aeb3e686000cec99e0669d0da89bb/${this.lat},${this.lng}`)
+            // Request data from the Dark Sky API through a proxy server. The data is parsed into an object to be accessible for Javascript.
+            // log errors into the console upon a status that is not success (200)
+            const res = await fetch(`https://ancient-eyrie-20832.herokuapp.com/https://api.darksky.net/forecast/key/${this.lat},${this.lng}`)
+            if(res.status != 200) throw Error;
             const data = await res.json();
             this.temp = Math.floor(data.currently.temperature);
             this.type = data.currently.icon;
             return this;
         }catch(err){
-            alert("Error: Failed to fetch weather data.");
+            throw new Error("Failed to retrieve weather.")
         }
     }
 }

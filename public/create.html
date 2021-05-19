@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content='669721718033-7p9jvrlaqkhu8tdkqanh4uiq4t07cucs.apps.googleusercontent.com'>
+    <link rel="stylesheet" href="../src/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <title>Tempo Poker</title>
 </head>
 <body>
     <div class="container">
+        <div id="signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="#" id="signout" class="hidden" onclick="signOut();">Sign out</a>
        <div class="row">
             <div id="one" class="col d-flex flex-column">
                 <h2>Player 1</h2>
@@ -23,7 +27,7 @@
                     <option value="pink">Pink</option>
                     <option value="red">Red</option>
                 </select>
-                <img src="images/playerIcons/black.png"/>
+                <img id="one-img" src="images/playerIcons/black.png"/>
             </div>
             <div id="two" class="col d-flex flex-column">
                 <h2>Player 2</h2>
@@ -38,13 +42,13 @@
                     <option value="pink">Pink</option>
                     <option value="red">Red</option>
                 </select>
-                <img src="images/playerIcons/black.png"/>
+                <img id="two-img" src="images/playerIcons/black.png"/>
 
             </div>
        </div>
        <div class="row">
            <h2>Board Size</h2>
-           <label for="size" class="form-label">Size: </label>
+           <label id="size-label" for="size" class="form-label">Size: 150</label>
            <input id="size" class="form-range" type="range" min="100" max="200" step="10"/>
        </div>
        <div class="row">
@@ -52,5 +56,25 @@
        </div>
     </div>
     <script type="module" src="../src/create.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('Name: ' + profile.getName());
+            document.querySelector("#one-name").value = profile.getName();
+            document.querySelector("#signin").classList.toggle("hidden");
+            document.querySelector("#signout").classList.toggle("hidden");
+
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+            document.querySelector("#signin").classList.toggle("hidden");
+            document.querySelector("#signout").classList.toggle("hidden");
+            });
+        }
+    </script>
 </body>
 </html>
